@@ -1,19 +1,19 @@
 let fs = require('fs') 
 let chalk = require('chalk')
 
-global.namaowner = `RIFQII STORE`
-global.namabot = `Kenzy Bot`
+global.namaowner = `unoshop`
+global.namabot = `unoshop`
 global.thumb = 'https://telegra.ph/file/b45f15e5fb8e37692c544.jpg'
 
 owner = [
   ['6285643112659'],
-  ['6285643112659'],
-  ['6285643112659', 'RIFQII STORE', true]
+  ['6285234852749'],
+  ['6285234852749', 'unoshop', true]
   // [number, dia creator/owner?, dia developer?]
 ] // Put your number here
 
 mods = [] // Want some help?
-prems = ['6285643112659', true] // Premium user has unlimited limit
+prems = ['6285234852749', true] // Premium user has unlimited limit
 
 APIs = { // API Prefix
   // name: 'https://website'
