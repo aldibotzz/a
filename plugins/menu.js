@@ -183,12 +183,12 @@ let fgif = {
       namaowner: namaowner,
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-     /** conn.sendButton(m.chat, `${ucapan()}﹗`, text.trim(), `${timeimg()}`, [
+     conn.sendButton(m.chat, `${ucapan()}﹗`, text.trim(), `${timeimg()}`, [
       ['⬡ 𝚜𝚙𝚎𝚎𝚍𝚝𝚎𝚜𝚝', `${_p}ping`],
       ['⬡ 𝚜𝚎𝚠𝚊 𝚋𝚘𝚝', `${_p}sewa`],
       ['⬡ 𝚘𝚠𝚗𝚎𝚛', `${_p}owner`],
-    ], m, {asLocation: true})**/
-    conn.send3ButtonImg(m.chat, thumb, text, wm, '⬡ 𝚜𝚙𝚎𝚎𝚍𝚝𝚎𝚜𝚝', '.speed', '⬡ 𝚜𝚎𝚠𝚊 𝚋𝚘𝚝', '.sewa', '⬡ 𝚘𝚠𝚗𝚎𝚛', '.owner', fgif, /**{ gifPlayback: true, contextInfo: { externalAdReply: {title: `Kenzy Bot`, body: date, sourceUrl: `https://wa.me/6285643112659`, thumbnail: fs.readFileSync('./thumbnail.jpg') }}}**/)
+    ], m, {asLocation: true})
+   // conn.send3ButtonImg(m.chat, thumb, text, wm, '⬡ 𝚜𝚙𝚎𝚎𝚍𝚝𝚎𝚜𝚝', '.speed', '⬡ 𝚜𝚎𝚠𝚊 𝚋𝚘𝚝', '.sewa', '⬡ 𝚘𝚠𝚗𝚎𝚛', '.owner', fgif, /**{ gifPlayback: true, contextInfo: { externalAdReply: {title: `Kenzy Bot`, body: date, sourceUrl: `https://wa.me/6285643112659`, thumbnail: fs.readFileSync('./thumbnail.jpg') }}}**/)
    // conn.sendButton(m.chat, text.trim(), global.wm, null, [['Sewa Bot', '.sewa'],['Owner', '.owner']], m)
     /*conn.sendHydrated(m.chat, text.trim(), 'Ⓟ premium | Ⓛ limit', null, 'https://aiinne.github.io/', 'Website', '', '', [
       ['Donate', '/donasi'],
