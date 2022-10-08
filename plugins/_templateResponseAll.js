@@ -1,4 +1,4 @@
-const { proto, generateWAMessage, areJidsSameUser } = require('@adiwajshing/baileys')
+/**const { proto, generateWAMessage, areJidsSameUser } = require('@adiwajshing/baileys')
 
 module.exports = {
     async all(m, chatUpdate) {
@@ -65,4 +65,4 @@ module.exports = {
         }
         this.ev.emit('messages.upsert', msg)
     }
-}
+}**/
