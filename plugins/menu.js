@@ -3,6 +3,8 @@ let fs = require('fs')
 let path = require('path')
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
+const platform = require('process')
+const os = require('os')
 let levelling = require('../lib/levelling')
 let tags = {
   'store': 'Store',
@@ -37,37 +39,62 @@ let tags = {
 }
 const defaultMenu = {
 before: `
-┏━━〔 *%namabot* 〕━━⬣
-┃⬡ Hai, %name!
-┃⬡ Tersisa *%limit Limit*
-┃⬡ Role *%role*
-┃⬡ Level *%level (%exp / %maxexp)*
-┃⬡ [%xp4levelup]
-┃⬡ %totalexp XP secara Total
-┃
-┃⬡ Tanggal: *%week %weton, %date*
-┃⬡ Tanggal Islam: *%dateIslamic*
-┃⬡ Waktu: *%time*
-┃
-┃⬡ Uptime: *%uptime (%muptime)*
-┃⬡ Database: %rtotalreg dari %totalreg
-┃⬡ Memory Used : *${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB*
-┗━━━━━━⬣
-%readmore`.trimStart(),
-  header: '┏━━〔 %category 〕━⬣',
-  body: '┃⬡%cmd %islimit %isPremium',
-  footer: '┗━━⬣\n',
-  after: `*Made by ♡*
-*%namaowner* | %version
+╭─────═[ INFO USER ]═─────⋆
+│╭───────────────···
+┴│☂︎ *Name:* %name
+⬡│☂︎ *Tag:* %tag
+⬡│☂︎ *Premium:* %prems
+⬡│☂︎ *Limit:* %limit
+⬡│☂︎ *Money:* %money
+⬡│☂︎ *Role:* %role
+⬡│☂︎ *Level:* %level [ %xp4levelup Xp For Levelup]
+⬡│☂︎ *Xp:* %exp / %maxexp
+┬│☂︎ *Total Xp:* %totalexp
+│╰────────────────···
+┠─────═[ TODAY ]═─────⋆
+│╭────────────────···
+┴│    *${ucapan()} %name!*
+⬡│☂︎ *Tanggal:* %week %weton
+⬡│☂︎ *Date:* %date
+⬡│☂︎ *Tanggal Islam:* %dateIslamic
+┬│☂︎ *Waktu:* %time
+│╰────────────────···
+┠─────═[ INFO BOT ]═─────⋆
+│╭────────────────···
+┴│☂︎ *Nama Bot:* %me
+⬡│☂︎ *Prefix:* [ *%_p* ]
+⬡│☂︎ *Baileys:* Multi Device
+⬡│☂︎ *Battery:* ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
+⬡│☂︎ *Platform:* %platform
+⬡│☂︎ *Type:* Node.Js
+⬡│☂︎ *Uptime:* %muptime
+┬│☂︎ *Database:* %rtotalreg dari %totalreg
+│╰────────────────···
+╰──────────═┅═──────────
+
+⃝▣──「 *INFO CMD* 」───⬣
+│ *Ⓟ* = Premium
+│ *Ⓛ* = Limit
+▣────────────⬣
+%readmore
+`.trimStart(),
+  header: '⃝▣──「 %category 」───⬣',
+  body: '│○ %cmd %isPremium %islimit',
+  footer: '▣───────────⬣\n',
+  after: `*%namaowner* | %version
 ${'```%npmdesc```'}
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
-    let { exp, limit, level, role } = global.db.data.users[m.sender]
+    let { age, exp, limit, level, role, registered, money} = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = await conn.getName(m.sender)
+    let premium = global.db.data.users[m.sender].premiumTime
+    let prems = `${premium > 0 ? 'Premium': 'Free'}`
+    let platform = os.platform()
+    let tag = `@${m.sender.split('@')[0]}`
     let d = new Date(new Date + 3600000)
     let locale = 'id'
     // d.getTimeZoneOffset()
@@ -177,7 +204,7 @@ let fgif = {
       totalexp: exp,
       xp4levelup: max - exp,
       github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
-      level, limit, name, weton, week, date, dateIslamic, wib, wit, wita, time, totalreg, rtotalreg, role,
+      level, limit, name, weton, week, date, dateIslamic, wib, wit, wita, time, totalreg, rtotalreg, role, _p, money, prems, platform, tag,
       readmore: readMore,
       namabot: namabot,
       namaowner: namaowner,
