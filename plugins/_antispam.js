@@ -1,4 +1,4 @@
-let handler = m => m
+/**let handler = m => m
 handler.before = function all(m) {
     if (!m.message)
         return
@@ -20,4 +20,4 @@ handler.before = function all(m) {
             count: 0,
             lastspam: 0
         }
-}
+}**/
