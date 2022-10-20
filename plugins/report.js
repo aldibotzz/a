@@ -1,5 +1,3 @@
-
-
 const { MessageType } = require('@adiwajshing/baileys')
 
 let handler = async(m, { conn, text, usedPrefix, command}) => {
@@ -7,7 +5,7 @@ let handler = async(m, { conn, text, usedPrefix, command}) => {
     if (text > 300) return conn.reply(m.chat, 'Maaf Teks Terlalu Panjang, Maksimal 300 Teks', m)
     var nomor = m.sender
     const teks1 = `*[ REPORT ]*\nNomor : wa.me/${nomor.split("@s.whatsapp.net")[0]}\nPesan : ${text}`
-    conn.reply('62895330379186@s.whatsapp.net', teks1, m)
+    conn.reply('6285643112659@s.whatsapp.net', teks1, m)
     conn.reply(m.chat, '✔️ Masalah berhasil dikirimkan ke Owner', m)
 }
 handler.help = ['report <fitur>']
