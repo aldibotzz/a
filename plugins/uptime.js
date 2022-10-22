@@ -14,8 +14,17 @@ let handler = async (m, { conn, usedPrefix, command }) => {
       second: 'numeric'
     })
     let gw = `${global.wm}`
+        let _muptime
+    if (process.send) {
+      process.send('uptime')
+      _muptime = await new Promise(resolve => {
+        process.once('message', resolve)
+        setTimeout(resolve, 1000)
+      }) * 1000
+    }
+    let muptime = clockString(_muptime)
     let uptimex = clockString(_uptime)
-    await conn.send2Button(m.chat, `╭───➣❲ *Runtime* ❳✯  \n├◩Tanggal : ${date}\n├◩Hari : ${week}\n├◩Jam : ${time}\n├◩Runtime : ${uptimex}\n╰──────────────◩`.trim(), gw, 'bot stats', usedPrefix + 'stat', 'pinger', usedPrefix + 'ping', m)
+    await conn.send2Button(m.chat, `╭───➣❲ *Runtime* ❳✯  \n├◩Tanggal : ${date}\n├◩Hari : ${week}\n├◩Jam : ${time}\n├◩Runtime : ${uptimex}\n├◩Muptime : ${muptime}\n╰──────────────◩`.trim(), gw, 'bot stats', usedPrefix + 'stat', 'pinger', usedPrefix + 'ping', m)
 }
 handler.help = ['runtime']
 handler.tags = ['info']
