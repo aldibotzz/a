@@ -61,7 +61,7 @@ before: `
 │╰────────────────···
 ┠─────═[ INFO BOT ]═─────⋆
 │╭────────────────···
-┴│☂︎ *Nama Bot:* %me
+┴│☂︎ *Nama Bot:* %namabot
 ⬡│☂︎ *Prefix:* [ *%_p* ]
 ⬡│☂︎ *Baileys:* Multi Device
 ⬡│☂︎ *Battery:* ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
