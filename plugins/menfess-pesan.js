@@ -1,17 +1,16 @@
+/**let fs =require ('fs')
 let path = require('path')
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
-const time = moment.tz('Asia/Jakarta').format('HH')
-const fs = require('fs')
 let handler = async(m, { conn, text, usedPrefix }) => {
 let [number, pesan] = text.split `|`
-let wm = global.wm
 let d = new Date(new Date + 3600000)
     let locale = 'id'
     // d.getTimeZoneOffset()
     // Offset -420 is 18.00
     // Offset    0 is  0.00
     // Offset  420 is  7.00
+       /** let name = await conn.getName(m.sender)
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
     let date = d.toLocaleDateString(locale, {
@@ -43,7 +42,7 @@ let ftoko = {
   }
   }
   }
-
+let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
     if (!number) return conn.reply(m.chat, 'Maaf Format Anda Salah\n\nContoh:\n.menfess 62××××|hallo sayang', m)
     if (!pesan) return conn.reply(m.chat, 'Maaf Format Anda Salah\n\nContoh:\n.menfess 62××××|hallo sayang', m)
     if (text > 500) return conn.reply(m.chat, 'Teks Kepanjangan!', m)
@@ -52,28 +51,16 @@ let ftoko = {
 
     let korban = `${number}`
     var nomor = m.sender
-    let spam1 = `Hi Saya Bot Ada Yang Kirim Pesan Ke Kamu
-Seseorang Temanmu
-(Pengirim Rahasia)
-⬡──⬡─────────⬡──⬡
-📫Pengirim : unknown
-⬡──⬡─────────⬡──⬡
-💌 Pesan : ${pesan}
+    let spam1 = `_Hi ada menfess nih buat kamu_
+    
+*Dari* : Rahasia
+*Pesan* : ${pesan}
 
-⬡──⬡─────────⬡──⬡
-Maaf Anda Belum Bisa Membalas ke Pengirim
-`
-let foot = `------------------------------------------
+_Pesan ini di tulis oleh seseorang,_
+_bot hanya menypaikan saja._`
+let foot = `klik button untuk membalas pesan`
 
-▮PENGIRIM RAHASIA 」 
-Anda Ingin Mengirimkan Pesan ke pacar/sahabat/teman/doi/
-mantan?, tapi Tidak ingin tau siapa Pengirimnya?
-Kamu bisa menggunakan Bot ini
-Contoh Penggunaan: .menfess nomor|pesan untuknya
-Contoh: .menfess 628xxxxxxxxxx|hai owner`
-
-conn.send2ButtonImg(korban + '@s.whatsapp.net', fla + 'menfess', spam1, foot, 'OWNER', '.owner', 'MENU', '.menu', ftoko)
-
+conn.sendButtonImg(korban + '@s.whatsapp.net', fla + 'menfess', spam1, foot, 'Balas Pesan', '.balasmenfess', fkon)
     let logs = `Sukses Mengirim Pesan
 👥 Dari : wa.me/${nomor.split("@s.whatsapp.net")[0]}
 ⬡──⬡─────────⬡──⬡
@@ -92,6 +79,7 @@ handler.private = true
 module.exports = handler
 
 function ucapan() {
+  const time = moment.tz('Asia/Jakarta').format('HH')
   res = "Selamat dinihari"
   if (time >= 4) {
     res = "Selamat pagi"
@@ -106,4 +94,46 @@ function ucapan() {
     res = "Selamat malam"
   }
   return res
+}**/
+
+
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    conn.menfess = conn.menfess ? conn.menfess : {}
+    if (!text) throw `*Cara penggunaan :*\n\n${usedPrefix + command} nomor|nama pengirim|pesan\n\n*Note:* nama pengirim boleh nama samaran atau anonymous.\n\n*Contoh:* ${usedPrefix + command} ${m.sender.split`@`[0]}|Nama|Halo.\n\n「 𝙰𝚕𝚋𝚎𝚍𝚘-𝙱𝙾𝚃  」`;
+    let [jid, name, pesan] = text.split('|');
+    if ((!jid || !name || !pesan)) throw `*Cara penggunaan :*\n\n${usedPrefix + command} nomor|nama pengirim|pesan\n\n*Note:* nama pengirim boleh nama samaran atau anonymous.\n\n*Contoh:* ${usedPrefix + command} ${m.sender.split`@`[0]}|Bapakmu|Halo.\n\n「 𝙰𝚕𝚋𝚎𝚍𝚘-𝙱𝙾𝚃 」`;
+    jid = jid.replace(/[^0-9]/g, '') + '@s.whatsapp.net';
+    let data = (await conn.onWhatsApp(jid))[0] || {};
+    if (!data.exists) throw 'Nomer tidak terdaftar di whatsapp.';
+    //if (jid == m.sender) throw 'tidak bisa mengirim pesan menfess ke diri sendiri.'
+    let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+    let mf = Object.values(conn.menfess).find(mf => mf.status === true)
+    if (mf) return !0
+    try {
+    	let id = + new Date
+        let txt = `Hai @${data.jid.split('@')[0]}, kamu menerima pesan Menfess nih.\n\nDari: *${name}*\nPesan: \n${pesan}\n\nMau balas pesan ini kak? bisa kak. kakak tinggal ketik pesan kakak nanti saya sampaikan ke *${name}*.`.trim();
+        let foot = `klik button untuk membalas pesan`
+        //await conn.sendButton(data.jid, txt, wm, 0, [['Balas Pesan', '.balasmenfess']], null)
+        conn.sendButtonImg(data.jid, fla + 'menfess', txt, foot, 'Balas Pesan', '.balasmenfess', fkon)
+        .then(() => {
+            m.reply('Berhasil mengirim pesan menfess.')
+            conn.menfess[id] = {
+                id,
+                dari: m.sender,
+                nama: name,
+                penerima: data.jid,
+                pesan: pesan,
+                status: false
+            }
+            return !0
+        })
+    } catch (e) {
+        console.log(e)
+        m.reply('eror');
+    }
 }
+handler.tags = ['nocategory']
+handler.help = ['menfes'].map(v => v + ' <nomor|nama|pesan>')
+handler.command = /^(confes|menfes)$/i
+handler.private = true
+module.exports = handler
