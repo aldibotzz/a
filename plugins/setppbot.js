@@ -1,19 +1,20 @@
-let handler = async (m, { conn, usedPrefix, command }) => {
-    let bot = conn.user.jid
-    let q = m.quoted ? m.quoted : m
-    let mime = (q.msg || q).mimetype || ''
-    if (/image/.test(mime)) {
-        let img = await q.download()
-        if (!img) throw 'Gambar tidak ditemukan'
-        await conn.updateProfilePicture(bot, img)
-        conn.reply(m.chat, 'Sukses Mengganti Foto Profile Bot!', m)
-    } else throw `kirim/balas gambar dengan caption *${usedPrefix + command}*`
+let { webp2png } require('../lib/webp2mp4.js')
+
+let handler = async (m, { conn, args }) => {
+  let q = m.quoted ? m.quoted : m
+  let mime = (q.msg || q).mimetype || q.mediaType || ''
+  if (/image/.test(mime)) {
+    let url = await webp2png(await q.download())
+    await conn.updateProfilePicture(conn.user.jid, { url }).then(_ => m.reply('Sudah Diganti Kak(✿❛◡❛)'))
+  } else if (args[0] && /https?:\/\//.test(args[0])) {
+    await conn.updateProfilePicture(conn.user.jid, { url: args[0] }).then(_ => m.reply('Sudah Diganti Kak(✿❛◡❛)'))
+  } else throw 'Where\'s the media?'
 }
 handler.help = ['setppbot']
 handler.tags = ['owner']
 
 handler.command = /^setppbot$/i
 
-handler.owner = true
+handler.rowner = true
 
 module.exports = handler

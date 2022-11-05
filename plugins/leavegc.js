@@ -37,9 +37,9 @@ let handler = async (m, { conn, args, command }) => {
         await conn.delay(1000)
         await conn.groupLeave(group)
         }
-handler.help = ['gc', 'group']
+handler.help = ['leave']
 handler.tags = ['group']
-handler.command = /^leavegroup|out|leavegc$/i
+handler.command = /^leavegroup|out|leavegc|leave$/i
 
 handler.owner = true
 
