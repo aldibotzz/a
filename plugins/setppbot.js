@@ -1,4 +1,4 @@
-let { webp2png } require('../lib/webp2mp4.js')
+let { webp2png } = require('../lib/webp2mp4.js')
 
 let handler = async (m, { conn, args }) => {
   let q = m.quoted ? m.quoted : m
