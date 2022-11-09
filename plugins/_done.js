@@ -40,7 +40,6 @@ ${petik}
 ⌚ JAM     : ${time} WIB
 ✨ STATUS  : Berhasil
 
-
 Pesanan @${m.quoted.sender.split('@')[0]} Berhasil!${petik}`)
 //if (!m.quoted.sender[0]) throw `reply cht`
 }
@@ -48,6 +47,7 @@ handler.help = ['d <reply cht nya>']
 handler.tags = ['store']
 handler.customPrefix = /^(done|d)$/i
 handler.group = true
+handler.admin = true
 handler.command = new RegExp
 
 module.exports = handler

@@ -47,6 +47,7 @@ handler.help = ['p <reply cht nya>']
 handler.tags = ['store']
 handler.customPrefix = /^(proses|p)$/i
 handler.group = true
+handler.admin = true
 handler.command = new RegExp
 
 module.exports = handler
