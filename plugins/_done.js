@@ -37,7 +37,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command, text }) => {
 m.reply(`「 TRANSAKSI BERHASIL」
 ${petik}
 📆 TANGGAL : ${week}, ${date}
-⌚ JAM     : ${time} WIB
+⌚ JAM     : ${wib} WIB
 ✨ STATUS  : Berhasil
 
 Pesanan @${m.quoted.sender.split('@')[0]} Berhasil!${petik}`)
