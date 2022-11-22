@@ -32,7 +32,7 @@ if (!('backup' in setting) settings.backup = true
 if (!isNumber(setting.backupTime)) setting.backupTime = 0
 
 */
-const fs = require('fs');
+/*const fs = require('fs');
 let handler = m => m
 handler.before = async function (m) {
 	
@@ -64,7 +64,7 @@ handler.before = async function (m) {
 	};
 	return !0;
 };
-module.exports = handler;
+module.exports = handler;*/
 
 /**
  * Dilarang Keras Untuk Menghapus atau Mengganti ini.
