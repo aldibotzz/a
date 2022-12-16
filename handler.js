@@ -586,8 +586,6 @@ module.exports = {
                 if (typeof settings !== 'object') db.data.settings[this.user.jid] = {}
                 if (settings) {
 		            if (!'anticall' in settings) settings.anticall = false
-                    if (!'backup' in settings) settings.backup = true
-                    if (!isNumber(settings.backupTime)) settings.backupTime = 0
 		            if (!'autoreset' in settings) settings.autoreset = true
 		            if (!isNumber(settings.autoresetTime)) settings.autoresetTime = (new Date() * 1) + 3600000 * 720
 		        } else db.data.settings[this.user.jid] = {
@@ -908,39 +906,7 @@ module.exports = {
                         } finally {
                   text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-                                this.sendButtonImg(id, pp, text, "Group Message", `By RifqiBotz\n*BOT ON 24 JAM & ADA FITUR STORE*
-╭──「 *_SEWA BOT_* 」
-│❏  1 MINGGU : IDR 3.000 (3K)
-│❏  1 BULAN : IDR 6.000 (6K)
-│❏  PERMANEN : IDR 10.000 (10K)
-╰────
-╭─ [ KELEBIHAN BOT ]
-│❏  ＯＮ 24 ＪＡＭ
-│❏  *ADA FITUR STORE*
-│❏  FITUR BANYAK
-╰────
-╭─[ KEUNTUNGAN ]
-│❏  ANTI LINK ( AUTO KICK )
-│❏  WELCOME ( OTOMATIS )
-│❏  DAN RATUSAN FITUR LAINYA
-╰────
-╭─[ *TES BOT? MASUK GRUB DI BAWAH* ]
-│❏ https://bit.ly/LinkGrubBotz
-╰────
-╭─[ *MINAT? HUBUNGI NOMOR DI BAWAH* ]
-│❏ wa.me/6285643112659?text=sewa+bot
-╰────
-╭─[ *PAYMENT* ]
-│❏  GOPAY
-│❏  DANA
-│❏  QRIS ALL PAYMENT
-╰────
-*_📍BOT INI MEMAKAI PANEL BUKAN TERMUX_*
-*_/HEROKU/WIBUSOFT_*
-*_DI JAMIN ANTI DELAY & ON 24 JAM!_*
-*_📍 BERGARANSI FULL_*
-
-
+                                this.sendButtonImg(id, pp, text, "Group Message", `WhatsApp Bot\n
 ╭──「 *_JADI BOT + OWNER_* 」
 │❏   RP : IDR 30.000 (30K)
 ╰────
@@ -949,7 +915,7 @@ module.exports = {
 │❏ *ADA FITUR NO INTERNET*
 │ *(JIKA HP/DATA/WIFI KALIAN MATI*
 │  *BOT  TTP NYALA*
-│❏  *BISA REQ YG BOT FULL BUG*
+│❏  *BISA REQ YG BOT FULL FITUR BUG*
 │❏  CUMA SCAN QR DOANG JADI                
 │     BOT + OWNER
 │❏  FITUR BOT NYA BANYAK
@@ -1062,7 +1028,7 @@ global.dfail = (type, m, conn) => {
         rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
         owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-        premium: 'premium 1bln 3k\nMinat? Cht Owner',
+        premium: '*Premium*\n1 Months *IDR 10000*\n1 Years *IDR 90000*\n\nHubungi *owner* kami..', 
         banned: 'Perintah ini hanya untuk pengguna yang terbanned..',
         created: 'Perintah ini hanya pengguna yang sudah membuat base\nContoh: #createbase Aine',
         group: 'Perintah ini hanya dapat digunakan di grup!',
