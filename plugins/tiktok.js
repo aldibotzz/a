@@ -55,14 +55,14 @@ let axios = require('axios');
 let fetch = require('node-fetch')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) throw `contoh:\n ${usedPrefix}${command} https://www.tiktok.com/@omagadsus/video/7025456384175017243`
-    let res = (await axios.get(`https://malesin.xyz/tiktok?url=${args[0]}`)).data
+    let res = (await axios.get(`https://malesin.xyz/tiktok?url=${args[0]}&apikey=DonasiDong`)).data
     if (res.status != 200) throw res.message;
     if (!res) throw res.message;
    // conn.sendButtonVid(m.chat, res.video, `*Judul:* ${res.title}\n${res.author ? `*Pembuat Video:* ${res.author}` : '\n' }`.trim(), 'Cara simpan digalery:\n1. Download dulu videonya\n2. Buka terus klik titik 3 pojok kanan atas\n3. lalu klik simpan!', 'menu', usedPrefix + 'menu', m)
     await conn.sendFile(m.chat, res.video, 'video.mp4', `
 *Judul:* ${res.title}\n${res.author}
 *Pembuat Video:* ${res.author}
-`, m, false, { contextInfo: { forwardingScore: 999, isForwarded: true }})
+//`, m, false, { contextInfo: { forwardingScore: 999, isForwarded: true }})
 }
 handler.help = ['tiktok'].map(v => v + ' <url>')
 handler.tags = ['downloader']
