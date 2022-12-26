@@ -5,7 +5,7 @@ let handler = async (m, { args, text }) => {
 
 conn.reply(m.chat, 'Succes !', m)
 
-const tmp = [tmpdir(), join(__dirname, '../tmp')]
+const tmp = ['./tmp']
   const filename = []
   tmp.forEach(dirname => readdirSync(dirname).forEach(file => filename.push(join(dirname, file))))
   return filename.map(file => {
