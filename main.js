@@ -42,7 +42,7 @@ const PORT = process.env.PORT || 3000
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || 'â€ŽxzXZ/i!#$%+Â£Â¢â‚¬Â¥^Â°=Â¶âˆ†Ã—Ã·Ï€âˆšâœ“Â©Â®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
-
+//opts['db'] = "url mongo"
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) : /mongodb/i.test(opts['db']) ?
@@ -114,7 +114,7 @@ if (!opts['test']) {
 if (opts['server']) require('./server')(global.conn, PORT)
 
 function clearTmp() {
-  const tmp = [os.tmpdir(), path.join(__dirname, './tmp')]
+  const tmp = ['./tmp']
   const filename = []
   tmp.forEach(dirname => fs.readdirSync(dirname).forEach(file => filename.push(path.join(dirname, file))))
   filename.map(file => (
