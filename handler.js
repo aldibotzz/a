@@ -930,7 +930,7 @@ module.exports = {
 │     DLL DI GANTI JADI TERSERAH LU
 ╰────
 ╭─[ *MINAT? HUBUNGI NOMOR DI BAWAH* ]
-│❏ wa.me/6285643112659?text=jadi+bot
+│❏ wa.me/6283852843517?text=jadi+bot
 ╰────
 *_📍BOT INI MEMAKAI PANEL BUKAN TERMUX_*
 *_/HEROKU/WIBUSOFT_*
