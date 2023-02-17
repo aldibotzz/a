@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+let handler = m => m
 handler.before = async (m) => {
     let chat = global.db.data.chats[m.chat]
     if (chat.simi && !chat.isBanned && !m.fromMe) {
