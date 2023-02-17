@@ -11,7 +11,7 @@ let handler = async (m, { isOwner, isPrems, command, usedPrefix, text, args, con
      const sentMsg = await m.reply('*_Tunggu Sebentar Aine Sedang Memprosesnya..._*')
      let full = /f$/i.test(command)
      let u = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0]
-     let ss = await (await fetch(global.API('nrtm', '/api/ssweb', { delay: 1000, url: u }))).buffer()
+  //   let ss = await (await fetch(global.API('nrtm', '/api/ssweb', { delay: 1000, url: u }))).buffer()
      let res = await mediafiredl(args[0])
      let { url, url2, filename, ext, aploud, filesize, filesizeH } = res
      let isLimit = (isPrems || isOwner ? limit : limit) * 1024 < filesize
@@ -24,7 +24,7 @@ let handler = async (m, { isOwner, isPrems, command, usedPrefix, text, args, con
 📤 *Uploaded:* ${aploud}
 ${isLimit ? `❌ *Ukuran file di atas ${limit} MB, download sendiri*\n` : ''}🚀 *Link:* ${await(await axios.get(`https://tinyurl.com/api-create.php?url=${url}`)).data}` 
      
-     if(ss) await conn.sendFile(m.chat, ss, 'screenshot.png', capt, sentMsg, 0, {jpegThumbnail: ss})
+  //   if(ss) await conn.sendFile(m.chat, ss, 'screenshot.png', capt, sentMsg, 0, {jpegThumbnail: ss})
      try {
      if(!isLimit) await conn.sendMedia(m.chat, url, 0, {fileName: `${filename}`, mentions: [m.sender]})
      } catch {

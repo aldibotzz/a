@@ -30,7 +30,7 @@ handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i
 
 module.exports = handler*/
 
-const sholatAll = require('../lib/salat')
+/**const sholatAll = require('../lib/salat')
 let axios = require('axios')
 let cheerio = require('cheerio')
 
@@ -76,4 +76,22 @@ function city() {
         })
         resolve(collect)
     })
+}**/
+
+let { jadwalsholat } = require('@bochilteam/scraper')
+let handler = async (m, { text, usedPrefix, command }) => {
+    if (!text) throw `Use example ${usedPrefix}${command} semarang`
+    const res = await jadwalsholat(text)
+    m.reply(`
+Jadwal Sholat *${text}*
+
+${Object.entries(res.today).map(([name, data]) => `*Sholat ${name}:* ${data}`).join('\n').trim()}
+`.trim())
 }
+
+handler.help = ['jadwalsalat'].map(v => v + ' <kota>')
+handler.tags = ['islami']
+handler.command = /^jadwal(salat|shalat|sholat)$/i
+handler.limit = true
+
+module.exports = handler
