@@ -581,11 +581,14 @@ module.exports = {
                     useDocument: false,
                     antiToxic: false,
                     expired: 0,
+                    store: [],
                 }
                 let settings = db.data.settings[this.user.jid]
                 if (typeof settings !== 'object') db.data.settings[this.user.jid] = {}
                 if (settings) {
 		            if (!'anticall' in settings) settings.anticall = false
+                    if (!'backup' in settings) settings.backup = true
+                    if (!isNumber(settings.backupTime)) settings.backupTime = 0
 		            if (!'autoreset' in settings) settings.autoreset = true
 		            if (!isNumber(settings.autoresetTime)) settings.autoresetTime = (new Date() * 1) + 3600000 * 720
 		        } else db.data.settings[this.user.jid] = {
@@ -906,9 +909,8 @@ module.exports = {
                         } finally {
                   text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-                                this.sendButtonImg(id, pp, text, "Group Message", `WhatsApp Bot\n
-╭──「 *_JADI BOT + OWNER_* 」
-│❏   RP : IDR 30.000 (30K)
+                                this.sendButtonImg(id, pp, text, "Group Message", `WhatsApp Bot\n╭──「 *_JADI BOT + OWNER_* 」
+│❏   RP : IDR 20.000 (20K)
 ╰────
 ╭─ [ FASILITAS ]
 │❏ *ADA FITUR STORE*
@@ -932,6 +934,12 @@ module.exports = {
 ╭─[ *MINAT? HUBUNGI NOMOR DI BAWAH* ]
 │❏ wa.me/6283852843517?text=jadi+bot
 ╰────
+╭─[ *PAYMENT* ]
+│❏  GOPAY
+│❏  DANA
+│❏  QRIS ALL PAYMENT
+╰────
+
 *_📍BOT INI MEMAKAI PANEL BUKAN TERMUX_*
 *_/HEROKU/WIBUSOFT_*
 *_DI JAMIN ANTI DELAY & ON 24 JAM!_*
@@ -1028,7 +1036,7 @@ global.dfail = (type, m, conn) => {
         rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
         owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-        premium: '*Premium*\n1 Months *IDR 10000*\n1 Years *IDR 90000*\n\nHubungi *owner* kami..', 
+        premium: 'premium 1bln 3k\nMinat? Cht Owner',
         banned: 'Perintah ini hanya untuk pengguna yang terbanned..',
         created: 'Perintah ini hanya pengguna yang sudah membuat base\nContoh: #createbase Aine',
         group: 'Perintah ini hanya dapat digunakan di grup!',
