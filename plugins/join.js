@@ -11,9 +11,9 @@ let handler = async (m, { conn, text, isOwner, groupMetadata }) => {
     //expired = Math.floor(Math.min(999, Math.max(7, isOwner ? isNumber(expired) ? parseInt(expired) : 0 : 3)))
     m.reply(`Berhasil join grup ${res}`)//
    // conn.reply(`Bot telah di undang di group: ${groupMetadata.subject}\nCode ID: ${res}`, `62895330379186@s.whatsapp.net`)
-    setTimeout(() => {
-    conn.reply(res, `*${conn.user.name}* adalah bot whatsapp yang di bangun menggunakan Nodejs, diundang oleh @${m.sender.split`@`[0]}\n\nUntuk Melihat List *Menu* bot ketik *#menu*`.trim(), null, { contextInfo: { mentionedJid: [m.sender] } })
-    }, 1500) 
+    //setTimeout(() => {
+    //conn.reply(res, `*${conn.user.name}* adalah bot whatsapp yang di bangun menggunakan Nodejs, diundang oleh @${m.sender.split`@`[0]}\n\nUntuk Melihat List *Menu* bot ketik *#menu*`.trim(), null, { contextInfo: { mentionedJid: [m.sender] } })
+    //}, 1500) 
     let chats = global.db.data.chats[res]
     if (!chats) chats = global.db.data.chats[res] = {}
     if (expired) chats.expired = +new Date() + expired * 1000 * 60 * 60 * 24
