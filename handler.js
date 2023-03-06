@@ -909,42 +909,7 @@ module.exports = {
                         } finally {
                   text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-                                this.sendButtonImg(id, pp, text, "Group Message", `By RifqiBotz\n
-*BOT ON 24 JAM & ADA FITUR STORE*
-╭──「 *_SEWA BOT_* 」
-│❏  1 MINGGU : IDR 2.000 (2K)
-│❏  1 BULAN : IDR 3.000 (3K)
-│❏  PERMANEN : IDR 5.000 (5K)
-╰────
-╭─ [ KELEBIHAN BOT ]
-│❏  ＯＮ 24 ＪＡＭ
-│❏  *ADA FITUR STORE*
-│❏  FITUR BANYAK
-╰────
-╭─[ KEUNTUNGAN ]
-│❏  ANTI LINK ( AUTO KICK )
-│❏  WELCOME ( OTOMATIS )
-│❏  DAN RATUSAN FITUR LAINYA
-╰────
-╭─[ *TES BOT? MASUK GRUB DI BAWAH* ]
-│❏ https://bit.ly/LinkGrubBotz
-╰────
-╭─[ *MINAT? HUBUNGI NOMOR DI BAWAH* ]
-│❏ wa.me/6283852843517?text=jadi+bot
-╰────
-╭─[ *PAYMENT* ]
-│❏  GOPAY
-│❏  DANA
-│❏  QRIS ALL PAYMENT
-╰────
-
-*_📍BOT INI MEMAKAI PANEL BUKAN TERMUX_*
-*_/HEROKU/WIBUSOFT_*
-*_DI JAMIN ANTI DELAY & ON 24 JAM!_*
-*_📍 BERGARANSI FULL_*
-
-
-╭──「 *_JADI BOT + OWNER_* 」
+                                this.sendButtonImg(id, pp, text, "Group Message", `WhatsApp Bot\n╭──「 *_JADI BOT + OWNER_* 」
 │❏   RP : IDR 20.000 (20K)
 ╰────
 ╭─ [ FASILITAS ]
